@@ -5,17 +5,21 @@ class Transaction {
     this.amount = amount;
     this.account = account;
   }
+
+  commit() {
+    this.account.balance += this.value;
+  }
 }
 
 class Deposit extends Transaction {
-  commit() {
-    this.account.balance += this.amount;
+  get value() {
+    return this.amount;
   }
 }
 
 class Withdrawal extends Transaction {
-  commit() {
-    this.account.balance -= this.amount;
+  get value() {
+    return -this.amount;
   }
 }
 class Account {
